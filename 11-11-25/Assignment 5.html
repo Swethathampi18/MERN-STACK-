@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Techycorp Solutions - Courses</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f6fbff;
+      margin: 0;
+      color: #1a354b;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(52,152,219,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .navbar-logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #19a2e7;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    .navbar-menu a {
+      color: #1a354b;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.08rem;
+      transition: color 0.2s;
+    }
+    .navbar-menu a.active,
+    .navbar-menu a:hover {
+      color: #19a2e7;
+    }
+    .navbar-cta {
+      background: #19a2e7;
+      color: #fff;
+      padding: 9px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.08rem;
+      text-decoration: none;
+      margin-left: 20px;
+      transition: background 0.2s;
+    }
+    .navbar-cta:hover {
+      background: #126aa7;
+    }
+    .container {
+      max-width: 1300px;
+      margin: 38px auto 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+      padding: 0 0 30px 0;
+    }
+    .course-grid-section {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+      padding: 48px 44px 24px 44px;
+      min-height: 420px;
+    }
+    .course-grid-left {
+      flex: 1.8;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      min-width: 440px;
+      max-width: 575px;
+    }
+    .course-grid-top {
+      width: 100%;
+      height: 220px;
+      background: #ddd;
+      position: relative;
+      box-shadow: 0 2px 8px #a6b7c42a;
+      border-radius: 0;
+      overflow: hidden;
+    }
+    .course-grid-bottom-row {
+      display: flex;
+      width: 100%;
+      gap: 20px;
+      height: 135px;
+    }
+    .course-grid-bottom {
+      flex: 1;
+      background: #f7f7fa;
+      position: relative;
+      box-shadow: 0 2.5px 8px #a6b7c42a;
+      border-radius: 0;
+      overflow: hidden;
+      height: 100%;
+    }
+    .course-grid-right {
+      flex: 1.12;
+      display: flex;
+      flex-direction: column;
+      min-width: 298px;
+      max-width: 410px;
+    }
+    .course-grid-vertical {
+      width: 100%;
+      height: 390px;
+      background: #eee;
+      position: relative;
+      box-shadow: 0 2.5px 8px #a6b7c42a;
+      border-radius: 0;
+      overflow: hidden;
+    }
+    .course-img, .course-img-vertical {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .course-label {
+      position: absolute;
+      right: 12px; bottom: 12px;
+      min-width: 110px;
+      max-width: 72%;
+      background: #fff;
+      border: 2px solid #19a2e7;
+      color: #263d53;
+      box-shadow: 0 2px 10px #19a2e740;
+      padding: 4px 12px 3px 10px;
+      border-radius: 7px;
+      display: inline-block;
+      text-align: left;
+      z-index: 4;
+      font-size: 0.91rem;
+    }
+    .course-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #263d53;
+      margin-bottom: 0;
+    }
+    .course-hrs {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: #19a2e7;
+      margin-top: 1px;
+      margin-left: 2px;
+      display: block;
+    }
+    @media (max-width: 1100px) {
+      .container { max-width: 98vw; }
+      .course-grid-section { flex-direction: column; gap: 14px; padding: 18px 1vw 10px 1vw;}
+      .course-grid-left, .course-grid-right { width: 100%; min-width: 0; max-width: unset;}
+      .course-grid-top { height: 110px;}
+      .course-grid-bottom-row { height: 62px;}
+      .course-grid-vertical { height: 180px;}
+    }
+    @media (max-width: 650px) {
+      .navbar { flex-direction: column; gap: 10px; padding: 10px 20px;}
+      .navbar-logo { font-size: 1.25rem; }
+      .container { padding: 0; }
+      .course-label { font-size: 0.85rem; padding: 5px 7px 3px 8px;}
+      .course-title { font-size: 0.85rem; }
+      .course-hrs { font-size: 0.73rem;}
+      .course-grid-top { height: 70px; }
+      .course-grid-bottom-row { height: 29px;}
+      .course-grid-vertical { height: 60px;}
+    }
+    .services-section {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 52px 8vw 24px;
+      margin-bottom: 40px;
+    }
+    .service-card {
+      background: #e7f7fc;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(52, 152, 219, 0.13);
+      flex: 1;
+      padding: 40px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.25s, background 0.25s, border-color 0.25s, color 0.25s;
+      min-width: 210px;
+      max-width: 400px;
+      min-height: 280px;
+      text-align: center;
+      border: 2px solid #d1eeff;
+      cursor: pointer;
+    }
+    .service-icon {
+      font-size: 2.9rem;
+      margin-bottom: 24px;
+      color: #19a2e7;
+      transition: color 0.25s;
+    }
+    .service-card h2 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 14px;
+      color: #184368;
+      transition: color 0.25s;
+    }
+    .service-card p {
+      font-size: 1.03rem;
+      color: #3878ab;
+      line-height: 1.5;
+      transition: color 0.25s;
+    }
+    .service-card:hover {
+      background: #19a2e7;
+      color: #fff;
+      border-color: #19a2e7;
+    }
+    .service-card:hover .service-icon,
+    .service-card:hover h2,
+    .service-card:hover p {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-logo">
+      Techycorp Solutions
+    </div>
+    <div class="navbar-menu">
+      <a class="active" href="#">HOME</a>
+      <a href="#">ABOUT</a>
+      <a href="#">COURSES</a>
+      <a href="#">PAGES</a>
+      <a href="#">CONTACT</a>
+      <a class="navbar-cta" href="#">Join Now &rarr;</a>
+    </div>
+  </div>
+  <div class="container">
+    <section class="services-section">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+        <h2>Card 1</h2>
+        <p></p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-globe"></i></div>
+        <h2>Card 2</h2>
+        <p></p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-home"></i></div>
+        <h2>Card 3</h2>
+        <p></p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-book-open"></i></div>
+        <h2>Card 4</h2>
+        <p></p>
+      </div>
+    </section>
+    <section class="course-grid-section">
+      <div class="course-grid-left">
+        <div class="course-grid-top">
+          <img src="OIP (1).jpeg" alt="Java Full Stack" class="course-img">
+          <div class="course-label">
+            <span class="course-title">Java Full Stack</span>
+            <span class="course-hrs">360 Hrs</span>
+          </div>
+        </div>
+        <div class="course-grid-bottom-row">
+          <div class="course-grid-bottom">
+            <img src="OIP (2).jpeg" alt="Web Development & Design" class="course-img">
+            <div class="course-label">
+              <span class="course-title">Web Development & Design</span>
+              <span class="course-hrs">320 Hrs</span>
+            </div>
+          </div>
+          <div class="course-grid-bottom">
+            <img src="OIP (3).jpeg" alt="Data Analytics" class="course-img">
+            <div class="course-label">
+              <span class="course-title">Data Analytics</span>
+              <span class="course-hrs">380 Hrs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="course-grid-right">
+        <div class="course-grid-vertical">
+          <img src="OIP.jpeg" alt="Cloud Solution Architect" class="course-img-vertical">
+          <div class="course-label">
+            <span class="course-title">Cloud Solution Architect</span>
+            <span class="course-hrs">260 Hrs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
