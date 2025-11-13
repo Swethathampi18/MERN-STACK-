@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Addition Calculator</title>
+  <style>
+    body { font-family: serif; margin: 20px; }
+    h1 { font-size: 2.2em; }
+    #resultLabel { font-size: 1.5em; margin-top: 20px; }
+    input, select {
+      font-size: 1em;
+      padding: 4px 8px;
+      margin: 3px 0 12px 0;
+      width: 150px;
+    }
+    button {
+      font-size: 1em;
+      padding: 6px 18px;
+    }
+    hr { margin: 23px 0; }
+  </style>
+</head>
+<body>
+  <h1>Simple Addition Calculator</h1>
+  <label for="num1">First Number: </label>
+  <select id="num1">
+    <option>0</option>
+    <option>5</option>
+    <option>10</option>
+    <option>15</option>
+    <option>20</option>
+    <option>25</option>
+    <option>30</option>
+    <option>35</option>
+    <option>40</option>
+    <option>45</option>
+  </select>
+  <br>
+  <label for="num2">Second Number: </label>
+  <input type="text" id="num2" value="0" />
+  <br>
+  <button onclick="calculateSum()">Calculate Sum</button>
+  <hr>
+  <span style="font-size:1.3em;"><b>Result:</b></span>
+  <div id="resultLabel">Enter numbers and click "Calculate Sum" to see the result.</div>
+  <script>
+    function calculateSum() {
+      var n1 = parseFloat(document.getElementById('num1').value);
+      var n2 = parseFloat(document.getElementById('num2').value);
+      var resultLabel = document.getElementById('resultLabel');
+      if (isNaN(n1) || isNaN(n2)) {
+        resultLabel.innerHTML = 'Please enter valid numbers.';
+      } else {
+        var sum = n1 + n2;
+        resultLabel.innerHTML = 'Sum = <b>' + sum + '</b>';
+      }
+    }
+  </script>
+</body>
+</html>
