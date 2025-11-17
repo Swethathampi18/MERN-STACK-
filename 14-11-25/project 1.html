@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calculator</title>
+  <style>
+    body { 
+      font-family: sans-serif; 
+      background: #eef; 
+    }
+    #calc {
+      width: 220px; 
+      margin: 60px auto; 
+      background: #fff;
+      border: 1px solid #aaa;
+      padding: 12px 16px 16px 16px; 
+      border-radius: 8px; 
+    }
+    #display {
+      width: 99%; 
+      font-size: 1.5em; 
+      margin-bottom: 10px;
+      height: 32px;
+      text-align: right;
+    }
+    .btn { 
+      width: 44px; 
+      height: 34px; 
+      margin: 2px; 
+      font-size: 1.1em; 
+    }
+    .row { 
+      text-align: center; 
+    }
+  </style>
+</head>
+<body>
+  <div id="calc">
+    <input type="text" id="display" disabled />
+    <div class="row">
+      <button class="btn" onclick="press('7')">7</button>
+      <button class="btn" onclick="press('8')">8</button>
+      <button class="btn" onclick="press('9')">9</button>
+      <button class="btn" onclick="press('/')">/</button>
+    </div>
+    <div class="row">
+      <button class="btn" onclick="press('4')">4</button>
+      <button class="btn" onclick="press('5')">5</button>
+      <button class="btn" onclick="press('6')">6</button>
+      <button class="btn" onclick="press('*')">*</button>
+    </div>
+    <div class="row">
+      <button class="btn" onclick="press('1')">1</button>
+      <button class="btn" onclick="press('2')">2</button>
+      <button class="btn" onclick="press('3')">3</button>
+      <button class="btn" onclick="press('-')">-</button>
+    </div>
+    <div class="row">
+      <button class="btn" onclick="press('0')">0</button>
+      <button class="btn" onclick="press('.')">.</button>
+      <button class="btn" onclick="calculate()">=</button>
+      <button class="btn" onclick="press('+')">+</button>
+    </div>
+    <div class="row">
+      <button class="btn" onclick="clearDisplay()" style="width:188px;">Clear</button>
+    </div>
+  </div>
+  <script>
+    let expr = "";
+    function press(val) {
+      expr += val;
+      document.getElementById('display').value = expr;
+    }
+    function calculate() {
+      try {
+        expr = eval(expr).toString();
+      } catch {
+        expr = "Error";
+      }
+      document.getElementById('display').value = expr;
+    }
+    function clearDisplay() {
+      expr = "";
+      document.getElementById('display').value = "";
+    }
+  </script>
+</body>
+</html>
