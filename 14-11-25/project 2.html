@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rock Paper Scissors with Record</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      text-align: center;
+      padding: 40px;
+    }
+    button {
+      font-size: 1.2em;
+      margin: 10px 15px;
+      padding: 12px 25px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: 2px solid #333;
+      background-color: #eee;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #cce5ff;
+    }
+    #result {
+      font-size: 1.3em;
+      margin-top: 25px;
+      font-weight: bold;
+    }
+    table {
+      margin: 20px auto 0 auto;
+      width: 260px;
+      border-collapse: collapse;
+      font-size: 1.2em;
+    }
+    th, td {
+      border: 2px solid #444;
+      padding: 8px 12px;
+    }
+    th {
+      background-color: #dedede;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock Paper Scissors</h1>
+  <div>
+    <button onclick="play('Rock')">Rock</button>
+    <button onclick="play('Paper')">Paper</button>
+    <button onclick="play('Scissors')">Scissors</button>
+  </div>
+  <div id="result"></div>
+
+  <h2>Record</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Wins</th>
+        <th>Losses</th>
+        <th>Ties</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="wins">0</td>
+        <td id="losses">0</td>
+        <td id="ties">0</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    let wins = 0;
+    let losses = 0;
+    let ties = 0;
+
+    function play(userChoice) {
+      const choices = ['Rock', 'Paper', 'Scissors'];
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+      let resultText = `You chose ${userChoice}, computer chose ${computerChoice}. `;
+
+      if (userChoice === computerChoice) {
+        ties++;
+        resultText += "It's a Tie!";
+      } else if (
+        (userChoice === 'Rock' && computerChoice === 'Scissors') ||
+        (userChoice === 'Paper' && computerChoice === 'Rock') ||
+        (userChoice === 'Scissors' && computerChoice === 'Paper')
+      ) {
+        wins++;
+        resultText += "You Win!";
+      } else {
+        losses++;
+        resultText += "You Lose!";
+      }
+
+      document.getElementById('result').textContent = resultText;
+      document.getElementById('wins').textContent = wins;
+      document.getElementById('losses').textContent = losses;
+      document.getElementById('ties').textContent = ties;
+    }
+  </script>
+</body>
+</html>
